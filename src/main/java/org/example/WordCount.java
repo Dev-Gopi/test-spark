@@ -15,6 +15,7 @@ public class WordCount {
         JavaRDD<String> inputFile = sparkContext.textFile(filename);
         JavaRDD<String> wordsFormFile = inputFile.flatMap(content -> Arrays.asList(content.split(" ")).iterator());
         JavaPairRDD countData = wordsFormFile.mapToPair(t -> new Tuple2(t,1)).reduceByKey((x,y) -> (int) x + (int) y);
-        countData.saveAsTextFile("OutputPath");
+//        countData.saveAsTextFile("C:\\Users\\Cool\\Downloads\\OutputPath");
+        System.out.println(countData.collect());
     }
 }
